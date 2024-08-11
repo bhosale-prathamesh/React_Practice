@@ -1,3 +1,8 @@
 export default function TabButton(props){
-    return (<li><button>{props.children}</button></li>)
+    function clickHandler(){
+        console.log('Hello World!');
+    }
+    return (<li>
+                <button onClick={clickHandler}>{props.children}</button>
+            </li>);
 }
