@@ -24,19 +24,17 @@ function App() {
         <section id="core-concepts">
         <h2>Core Concepts</h2>
         <ul>
-          <CoreConcept {...CORE_CONCEPTS[0]}/>
-          <CoreConcept {...CORE_CONCEPTS[1]}/>
-          <CoreConcept {...CORE_CONCEPTS[2]}/>
-          <CoreConcept {...CORE_CONCEPTS[3]}/>
+          {CORE_CONCEPTS.map((item) => <CoreConcept {...item} />)}
+          {/* <CoreConcept {...CORE_CONCEPTS[0]}/> */}
         </ul>
         </section>
         <section id ="examples">
           <h2>Examples</h2>
           <menu>
             <TabButton isSelected = {selectedText == 'components'} onSelect={() => handleSelect('components')}>Components</TabButton>
-            <TabButton isSelected = {selectedText == 'jsx'}onSelect={() => handleSelect('jsx')}>JSX</TabButton>
-            <TabButton isSelected = {selectedText == 'props'}onSelect={() => handleSelect('props')}>Props</TabButton>
-            <TabButton isSelected = {selectedText == 'state'}onSelect={() => handleSelect('state')}>State</TabButton>
+            <TabButton isSelected = {selectedText == 'jsx'} onSelect={() => handleSelect('jsx')}>JSX</TabButton>
+            <TabButton isSelected = {selectedText == 'props'} onSelect={() => handleSelect('props')}>Props</TabButton>
+            <TabButton isSelected = {selectedText == 'state'} onSelect={() => handleSelect('state')}>State</TabButton>
           </menu>
         </section>
         <div id='tab-content'>
