@@ -1,4 +1,7 @@
+import { useState } from 'react';
 import { CORE_CONCEPTS } from './data';
+import { EXAMPLES } from './data';
+
 import Header from './components/Header/Header.jsx';
 import CoreConcept from './components/CoreConcepts.jsx';
 import TabButton from './components/TabButton.jsx';
@@ -6,9 +9,15 @@ import TabButton from './components/TabButton.jsx';
 
 
 function App() {
+  const [selectedText,setselectedText] = useState("components");
+  var dynamicContent = "Test";
   function handleSelect(selectedBtn){
-    console.log("Hello World - Selected " + selectedBtn);
+    // dynamicContent = selectedBtn;
+    setselectedText(selectedBtn);
+    console.log(selectedText);
+    
   }
+
 
   return (
     <div>
@@ -33,6 +42,17 @@ function App() {
             <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
           </menu>
         </section>
+        <div id='tab-content'>
+          <h3>{EXAMPLES[selectedText].title}</h3>
+          <p>
+            {EXAMPLES[selectedText].description}
+          </p>
+          <pre>
+            <code>
+            {EXAMPLES[selectedText].code}
+            </code>
+          </pre>
+        </div>
       </main>
     </div>
   );
