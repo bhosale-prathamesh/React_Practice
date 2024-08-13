@@ -12,10 +12,7 @@ function App() {
   const [selectedText,setselectedText] = useState("components");
   var dynamicContent = "Test";
   function handleSelect(selectedBtn){
-    // dynamicContent = selectedBtn;
     setselectedText(selectedBtn);
-    console.log(selectedText);
-    
   }
 
 
@@ -36,10 +33,10 @@ function App() {
         <section id ="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onSelect={() => handleSelect('components')}>Components</TabButton>
-            <TabButton onSelect={() => handleSelect('jsx')}>JSX</TabButton>
-            <TabButton onSelect={() => handleSelect('props')}>Props</TabButton>
-            <TabButton onSelect={() => handleSelect('state')}>State</TabButton>
+            <TabButton isSelected = {selectedText == 'components'} onSelect={() => handleSelect('components')}>Components</TabButton>
+            <TabButton isSelected = {selectedText == 'jsx'}onSelect={() => handleSelect('jsx')}>JSX</TabButton>
+            <TabButton isSelected = {selectedText == 'props'}onSelect={() => handleSelect('props')}>Props</TabButton>
+            <TabButton isSelected = {selectedText == 'state'}onSelect={() => handleSelect('state')}>State</TabButton>
           </menu>
         </section>
         <div id='tab-content'>
