@@ -14,7 +14,6 @@ function App() {
   return (
     <>
       <Header />
-      
       <main>
         <CoreConcepts/>
         <Examples/>

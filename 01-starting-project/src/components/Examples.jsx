@@ -4,7 +4,7 @@ import TabButton from "./TabButton";
 
 export default function Examples(){
     const [selectedText,setselectedText] = useState("components");
-    var dynamicContent = "Test";
+
     function handleSelect(selectedBtn){
     setselectedText(selectedBtn);
   }
