@@ -1,9 +1,29 @@
+import { useState } from 'react';
+
 export default function Player({name,symbol}){
+    const [editing,setEditing] = useState(false);
+    const [playerName,setPlayerName] = useState(name);
+    var ip;
+    if (editing){
+        ip = <input required value={playerName} onChange={handleChange}></input>;
+    }
+    else{
+        ip = <span className="player-name">{playerName}</span>;
+    }
+
+    function handleChange(event){
+
+        setPlayerName(event.target.value);
+    }
+
+    function handleClick(){
+        setEditing((editing) => !editing);
+    } 
     return (<li>
         <span className="player">
-          <span className="player-name">{name}</span>
+          {ip}
           <span className="player-symbol">{symbol}</span>
         </span>
-        <button>Edit</button>
+        <button onClick={handleClick}>{editing ? "Save" : "Edit"}</button>
       </li>);
 }
