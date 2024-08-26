@@ -23,7 +23,7 @@ function deriveActivePlayer(gameTurns)
 function App() {
   const[gameTurns, setGameTurns] = useState([]);
   // const[activePlayer,setActivePlayer] = useState('X');
-
+  let winner = null;
   const activePlayer = deriveActivePlayer(gameTurns);
 
   let gameBoard = initialGB;
@@ -31,6 +31,18 @@ function App() {
     for(const turn of gameTurns){
         const {square,player} = turn;
         gameBoard[square.row][square.col] = player;
+    }
+
+    for (const combo of WINNING_COMBINATIONS){
+      let first = gameBoard[combo[0].row][combo[0].column]
+      let second = gameBoard[combo[1].row][combo[1].column]
+      let third = gameBoard[combo[2].row][combo[2].column]
+
+      if (first === second && second === third && first !== null){
+        
+        winner = first;
+        console.log(winner+" won!");
+      }
     }
 
 
@@ -53,6 +65,7 @@ function App() {
           <Player name = "Player 1" symbol="X" isActive={activePlayer === 'X'}/>
           <Player name = "Player 2" symbol="O" isActive={activePlayer === 'O'}/>
         </ol>
+        {winner && <p>{winner} You Won!!</p>}
         <GameBoard onSelectSquare={selectSquare} gameBoard = {gameBoard} />
       </div>
       <Log turns={gameTurns}/> 
