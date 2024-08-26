@@ -4,13 +4,11 @@ import Player from "./Components/Player";
 import Log from './Components/Log';
 import { WINNING_COMBINATIONS } from "./winning_combos";
 
-const WCOMBO = [
-  [
-    {row : 0, col : 0},
-    {row : 0, col : 1},
-    {row : 0, col : 2},
-  ]
-]
+const initialGB = 
+[[null,null,null],
+ [null,null,null],
+ [null,null,null]]
+  
 function deriveActivePlayer(gameTurns)
 {
   let curPlayer = 'X';
@@ -28,8 +26,16 @@ function App() {
 
   const activePlayer = deriveActivePlayer(gameTurns);
 
+  let gameBoard = initialGB;
+
+    for(const turn of gameTurns){
+        const {square,player} = turn;
+        gameBoard[square.row][square.col] = player;
+    }
+
+
   function selectSquare(rowIdx,colIdx){
-    // setActivePlayer((curActivePlayer) => curActivePlayer === 'X' ? 'O' : 'X');
+
     setGameTurns((prevTurns) => {
                   const curPlayer = deriveActivePlayer(gameTurns);
                   const updatedTurns = [{square : {row : rowIdx, col : colIdx },
@@ -47,7 +53,7 @@ function App() {
           <Player name = "Player 1" symbol="X" isActive={activePlayer === 'X'}/>
           <Player name = "Player 2" symbol="O" isActive={activePlayer === 'O'}/>
         </ol>
-        <GameBoard onSelectSquare={selectSquare} activePlayer = {activePlayer} turns = {gameTurns} />
+        <GameBoard onSelectSquare={selectSquare} gameBoard = {gameBoard} />
       </div>
       <Log turns={gameTurns}/> 
     </main>
